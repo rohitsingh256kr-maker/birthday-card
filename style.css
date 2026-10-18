@@ -1,0 +1,101 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  /* Multi-color gradient background */
+  background: linear-gradient(135deg, #ffdde1, #ee9ca7, #a1c4fd);
+  background-size: 400% 400%;
+  animation: bgColors 10s infinite alternate;
+
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+/* Heart with animated colors */
+.heart {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(45deg, red, orange, pink, purple);
+  background-size: 400% 400%;
+  animation: heartColors 5s infinite alternate;
+  position: relative;
+  transform: rotate(-45deg);
+  cursor: pointer;
+  transition: transform 1s ease, opacity 1s ease;
+}
+.heart::before,
+.heart::after {
+  content: "";
+  width: 200px;
+  height: 200px;
+  background: inherit;
+  border-radius: 50%;
+  position: absolute;
+}
+.heart::before { top: -100px; left: 0; }
+.heart::after { left: 100px; top: 0; }
+
+/* Celebration hidden initially */
+.celebration {
+  display: none;
+  text-align: center;
+  animation: fadeIn 2s ease forwards;
+}
+.gradient-text {
+  background: linear-gradient(90deg, #d6336c, #ff9900, #0099ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.celebration h1 { font-size: 2.5em; }
+.celebration p { font-size: 1.2em; margin-top: 10px; }
+.flowers {
+  margin-top: 20px;
+  font-size: 2em;
+  animation: flowerBounce 2s infinite alternate;
+}
+
+/* Falling flowers container */
+#falling-flowers {
+  position: fixed;
+  bottom: 0; /* start from bottom */
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.flower {
+  position: absolute;
+  font-size: 2em;
+  animation: rise linear forwards;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {opacity: 0; transform: scale(0.8);}
+  to {opacity: 1; transform: scale(1);}
+}
+@keyframes flowerBounce {
+  from {transform: translateY(0);}
+  to {transform: translateY(10px);}
+}
+@keyframes heartColors {
+  0% {background-position: 0% 50%;}
+  100% {background-position: 100% 50%;}
+}
+@keyframes bgColors {
+  0% {background-position: 0% 50%;}
+  100% {background-position: 100% 50%;}
+}
+.flower {
+  position: absolute;
+  font-size: 3em;
+  animation: fall linear forwards;
+}
+
+/* Flowers fall from top to bottom */
+@keyframes fall {
+  from { transform: translateY(-50px); }
+  to   { transform: translateY(100vh); }
+}
